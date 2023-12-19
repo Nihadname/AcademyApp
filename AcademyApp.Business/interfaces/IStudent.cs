@@ -15,7 +15,7 @@ namespace AcademyApp.Business.interfaces
 
         Student Get(int id);
         Student Delete(int id);
-        Student Uptade(int id,Student student);
-        Student Create(Student student);
+        Student Uptade(int id,Student student,string groupName);
+        Student Create(Student student,string groupName);
     }
 }
