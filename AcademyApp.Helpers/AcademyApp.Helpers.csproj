@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AcademyApp.DataContext\AcademyApp.DataContext.csproj" />
-    <ProjectReference Include="..\AcademyApp.Domain\AcademyApp.Domain.csproj" />
-  </ItemGroup>
-
 </Project>
