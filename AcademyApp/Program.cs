@@ -1,53 +1,75 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AcademyApp.Business.Services;
+using AcademyApp.Controllers;
 using AcademyApp.Domain.Models;
 using AcademyApp.Helpers;
-StudentService studentService = new StudentService();
+using static AcademyApp.Helpers.Helper;
+
+
+
 Console.WriteLine("Hello, World!");
-Helpers.changeTextColor("AcademyApp",ConsoleColor.Red);
-Helpers.changeTextColor("enter number 1.createStudent 2.getAllStudents", ConsoleColor.Yellow);
-EnterMenu:string menu=Console.ReadLine();
-bool result=int.TryParse(menu, out int intMenu);
-while (true) { 
-if (result && intMenu > 0 && intMenu < 3)
+StudentController studentController=new();
+GroupController groupController=new();
+Helper.changeTextColor(ConsoleColor.Yellow, "AcademyApp");
+
+while (true) {
+    Helper.changeTextColor(ConsoleColor.Green, "enter number" +
+    "1.createStudent" +
+    "2.getAllStudents"
+    + "3.getAllStudentsWithName" +
+    "4.getStudentById" +
+    "5.DeleteStudent" +
+    "6.UpdateStudent" +
+    "7.CreateGroup" +
+    "8.getAllGroup" +
+    "9.getAllStudentsWithGroupName"+
+    "0.exitMenu");
+ string menu = Console.ReadLine();
+    bool result = int.TryParse(menu, out int intMenu);
+
+    if (result && intMenu > 0 && intMenu < 14)
 {
         switch(intMenu)
         {
-            case 1:
-                Helpers.changeTextColor("enter student Name", ConsoleColor.Red);
-                string name=Console.ReadLine();
-                Helpers.changeTextColor("enter student SurName", ConsoleColor.Red);
-                string Surname = Console.ReadLine();
-                Helpers.changeTextColor("enter group ", ConsoleColor.Red);
-                string Groupname = Console.ReadLine();
-                Student student=new Student();
+            case (int)Menus.createStudent:
+                studentController.CreateStudent();
+
+                break;
+                case (int)Menus.getAllStudents:
+                studentController.getAll();
+                break;
+            case (int)Menus.getAllStudentsWithName:
+                studentController.getAllStudentsWithName();
+                break;
+                case (int)Menus.getStudentById: 
                 
-                student.Name = name;
-                student.SurName = Surname;
-                studentService.Create(student, Groupname);
-                if (studentService.Create(student, Groupname) is null)
-                {
-                    Helpers.changeTextColor("something went wrong", ConsoleColor.Red);
-
-                }
-                else
-                {
-                    Helpers.changeTextColor("succesfuly created", ConsoleColor.Green);
-
-                }
-
+                break;
+                case (int)Menus.DeleteStudent:
+                break;
+                case (int)Menus.UpdateStudent: 
+                studentController.UpdateStudent();
+                break;
+            case (int)Menus.CreateGroup:
+                groupController.CreateGroup();
+            break;
+               case ( int)Menus.getAllGroups:
+                groupController.getAllGroup();
+                break;
+            case (int)Menus.getAllStudentsWithGroupName:
+         studentController.getAllStudentsWithGroupName();
                 break;
         }
 
 }else if (intMenu == 0)
-{
-        Helpers.changeTextColor("menuyunu terk etdiniz", ConsoleColor.Green);
+    {
+        Helper.changeTextColor(ConsoleColor.Red, "you left the menu");
         break;
 
 }
 else
 {
-    Helpers.changeTextColor("Duzgun eded daxil edin", ConsoleColor.Blue);
-        goto EnterMenu;
+        Helper.changeTextColor(ConsoleColor.Red, "duzgun eded daxil edin");
+
+        //goto EnterMenu;
 }
 }

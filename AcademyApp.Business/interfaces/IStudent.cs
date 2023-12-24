@@ -10,6 +10,7 @@ namespace AcademyApp.Business.interfaces
     public interface IStudent
     {
         List<Student> GetAll();
+       List<Student> getAllStudentsWithGroupName(string groupName);
         List<Student> GetAll(string name);
         List<Student> GetAll(int age);
 

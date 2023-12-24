@@ -59,7 +59,32 @@ namespace AcademyApp.Business.Services
 
         public Student Uptade(int id, Student student, string groupName)
         {
-            throw new NotImplementedException();
+            var existStudent= _studentRepository.Get(s=>s.Id==id);
+            if (existStudent is null) return null;
+            var existGroup=_groupRepository.Get(s=>s.Name==groupName);
+            if (existGroup is null) return null;
+            if(!string.IsNullOrEmpty(student.Name))
+            {
+                existStudent.Name = student.Name;
+            }
+           if(!string.IsNullOrEmpty(student.SurName))
+            {
+                existStudent.SurName = student.SurName;
+            }
+            existStudent.group =existGroup;
+           if (_studentRepository.Update(existStudent))
+            {
+                return existStudent;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<Student> getAllStudentsWithGroupName(string groupName)
+        {
+            return _studentRepository.GetAll(s => s.group.Name == groupName);
         }
     }
 }

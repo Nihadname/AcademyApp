@@ -10,6 +10,6 @@ namespace AcademyApp.Domain.Models
     public class Group:BaseEntity
     {
         public string Name { get; set; }
-        public string MaxSize { get; set; }
+        public int MaxSize { get; set; }
     }
 }
