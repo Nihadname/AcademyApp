@@ -50,7 +50,7 @@ namespace AcademyApp.Controllers
             {
                 foreach (var student in studentsGettAll)
                 {
-                    Helper.changeTextColor(ConsoleColor.Green, $"id:{student.Id} Name:{student.Name}");
+                    Helper.changeTextColor(ConsoleColor.Green, $"id:{student.Id} Name:{student.Name} GroupName:{student.group.Name}");
 
                 }
             }
@@ -111,6 +111,22 @@ namespace AcademyApp.Controllers
                 Helper.changeTextColor(ConsoleColor.Green, "succesfully updated");
 
             }
+        }
+        public void DeleteStudent()
+        {
+            Helper.changeTextColor(ConsoleColor.Red, "enter Id");
+            int id = int.Parse(Console.ReadLine());
+            var result=_studentService.Delete(id);
+            if(result == null) {
+                Helper.changeTextColor(ConsoleColor.Red, "something went wrong");
+
+            }
+            else
+            {
+                Helper.changeTextColor(ConsoleColor.Red, "student deleted");
+
+            }
+
         }
     }
 }

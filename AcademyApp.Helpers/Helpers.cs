@@ -25,6 +25,8 @@ namespace AcademyApp.Helpers
             CreateGroup,
             getAllGroups,
             getAllStudentsWithGroupName,
+            UpdateGroup,
+            deleteGroup
 
 
 

@@ -13,6 +13,8 @@ namespace AcademyApp.Business.Services
     public class GroupService:IGroup
     {
         private readonly GroupRepository groupRepository;
+        private readonly StudentRepository StudentRepository;
+
         private static int Count = 1;
         public GroupService()
         {
@@ -36,7 +38,20 @@ namespace AcademyApp.Business.Services
 
         public Group Delete(int id)
         {
-            throw new NotImplementedException();
+            var existedGroup = groupRepository.Get(s => s.Id == id);
+            if (existedGroup is  null) return null;
+            if (groupRepository.Delete(existedGroup))
+            {
+                var stuList=StudentRepository.GetAll(s=>s.Id==id);
+                if (stuList.Count > 0)
+                {
+                 foreach (var stu in stuList)
+                    {
+                        StudentRepository.Delete(stu);
+                    }
+                }
+            }
+            return null;
         }
 
         public Group get(string name)

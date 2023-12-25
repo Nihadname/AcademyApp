@@ -34,7 +34,10 @@ namespace AcademyApp.Business.Services
 
         public Student Delete(int id)
         {
-            throw new NotImplementedException();
+      var existedStudent=_studentRepository.Get(s=>s.Id == id);
+            if (existedStudent is not null) return null;
+            if (_studentRepository.Delete(existedStudent)) return existedStudent;
+            return null;
         }
 
         public Student Get(int id)

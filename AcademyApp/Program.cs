@@ -23,11 +23,13 @@ while (true) {
     "7.CreateGroup" +
     "8.getAllGroup" +
     "9.getAllStudentsWithGroupName"+
+    "10.UpatdeStudent"+
+    "11.deleteGroup" +
     "0.exitMenu");
  string menu = Console.ReadLine();
     bool result = int.TryParse(menu, out int intMenu);
 
-    if (result && intMenu > 0 && intMenu < 14)
+    if (result && intMenu > 0 && intMenu < 11)
 {
         switch(intMenu)
         {
@@ -45,6 +47,7 @@ while (true) {
                 
                 break;
                 case (int)Menus.DeleteStudent:
+                studentController.DeleteStudent();
                 break;
                 case (int)Menus.UpdateStudent: 
                 studentController.UpdateStudent();
@@ -57,6 +60,12 @@ while (true) {
                 break;
             case (int)Menus.getAllStudentsWithGroupName:
          studentController.getAllStudentsWithGroupName();
+                break;
+            case (int)Menus.UpdateGroup:
+                groupController.UpdateGroup();
+                break;
+            case (int)Menus.deleteGroup:
+                groupController.DeleteGroup();
                 break;
         }
 

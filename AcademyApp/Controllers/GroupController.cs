@@ -71,5 +71,47 @@ namespace AcademyApp.Controllers
             }
 
         }
+        public void UpdateGroup()
+        {
+            Helper.changeTextColor(ConsoleColor.Red, "enter Id");
+            int id = int.Parse(Console.ReadLine());
+            Helper.changeTextColor(ConsoleColor.Red, "enter size");
+            int size = int.Parse(Console.ReadLine());
+            Helper.changeTextColor(ConsoleColor.Green, "enter groupName ");
+            string Groupname = Console.ReadLine();
+            Group group = new();
+
+            group.Name = Groupname;
+            group.MaxSize = size;
+            var createdGroup = groupService.update(id,group);
+            if(createdGroup != null)
+            {
+                Helper.changeTextColor(ConsoleColor.Green, $"{group.Name} uptaded succesfully ");
+
+            }
+            else
+            {
+                Helper.changeTextColor(ConsoleColor.Red, "something went wrong ");
+
+            }
+
+        }
+        public void DeleteGroup()
+        {
+            Helper.changeTextColor(ConsoleColor.Red, "enter Id");
+            int id = int.Parse(Console.ReadLine());
+            var result = groupService.Delete(id);
+            if (result == null)
+            {
+                Helper.changeTextColor(ConsoleColor.Red, "something went wrong");
+
+            }
+            else
+            {
+                Helper.changeTextColor(ConsoleColor.Red, "student deleted");
+
+            }
+
+        }
     }
 }
