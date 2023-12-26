@@ -29,7 +29,7 @@ while (true) {
  string menu = Console.ReadLine();
     bool result = int.TryParse(menu, out int intMenu);
 
-    if (result && intMenu > 0 && intMenu < 11)
+    if (result && intMenu > 0 && intMenu < 12)
 {
         switch(intMenu)
         {
